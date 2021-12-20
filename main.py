@@ -11,4 +11,4 @@ cowin_df = pd.read_csv(COWIN_DATA)
 vad_cases = cases_df[cases_df['District'] == 'Vadodara']
 vad_cowin = cowin_df[cowin_df['District'] == 'Vadodara']
 
-case_df.to_json(os.path.join(OUTPUT_DIR, 'cases.json'), orient='records')
+cases_df.to_json(os.path.join(OUTPUT_DIR, 'cases.json'), orient='records')
