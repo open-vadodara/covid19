@@ -6,7 +6,7 @@ name: Generate Data
 on:
   schedule:
     # every night at 00:00
-    # - cron: "0 0 0 1/1 * ? *"
+    - cron: "0 0 0 1/1 * ? *"
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
