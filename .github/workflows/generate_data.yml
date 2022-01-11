@@ -32,5 +32,6 @@ jobs:
       - name: Generate Data
         run: |
           echo "Generating cases & cowin vaccination data"
+          mkdir ./_data
           python main.py
           echo "Job Completed!"
