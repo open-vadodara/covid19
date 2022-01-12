@@ -17,5 +17,3 @@ for url in DWNLD_MAP:
     df = pd.read_csv(url)
     vad_df = df[df['District'].str.contains(DISTRICT_NAME)]
     vad_df.to_json(os.path.join(OUTPUT_DIR, '{}.json'.format(DWNLD_MAP[url])), orient='records')
-
-print('DONE!')
