@@ -39,9 +39,9 @@ jobs:
 
       - name: Generate Data
         run: |
-          echo "Job Start!"
-          bash main.sh
-          echo "Job Completed!"
+          echo "Scraping start!"
+          python main.py
+          echo "Scraping end!"
       
       - name: Commit changes
         run: |
