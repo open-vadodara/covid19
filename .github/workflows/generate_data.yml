@@ -4,9 +4,10 @@ name: Generate Data
 
 # Controls when the workflow will run
 on:
+  # scheduled every night at 00:00
   schedule:
-    # every night at 00:00
-    - cron: "0 0 0 1/1 * ? *"
+    - cron: "0 0 * * *"
+
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
@@ -31,7 +32,7 @@ jobs:
 
       - name: Generate Data
         run: |
-          echo "Generating cases & cowin vaccination data"
+          echo "Job Start!"
           mkdir ./_data
           python main.py
           echo "Job Completed!"
