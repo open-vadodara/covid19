@@ -42,3 +42,9 @@ jobs:
           echo "Job Start!"
           bash main.sh
           echo "Job Completed!"
+      
+      - name: Commit changes
+        run: |
+          set -e
+          git commit -am "data updated on - $(date)"
+          git push --force-with-lease origin main
