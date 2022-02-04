@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Vadodara</title>
+<body>
+
+  <h1>Open Vadodara</h1>
+
+  <ul>
+    <li><span>Total Active Cases</span>&nbsp;<strong id="active"></strong></li>
+    <li><span>Total Confirmed Cases</span>&nbsp;<strong id="confirmed"></strong></li>
+    <li><span>Total Recovered Cases</span>&nbsp;<strong id="recovered"></strong></li>
+    <li><span>Total Deceased Cases</span>&nbsp;<strong id="deceased"></strong></li>
+  </ul>
+</head>
+
+<script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+<script type="text/javascript">
+  const CUMULATIVE_JSON = 'https://open-vadodara.github.io/covid19/data/cumulative.json'
+  const TIMESERIES_JSON = 'https://open-vadodara.github.io/covid19/data/timeseries.json'
+  const VACCINATION_JSON = 'https://open-vadodara.github.io/covid19/data/vaccination.json'
+
+  d3.json(CUMULATIVE_JSON).then(resp => {
+    document.getElementById('active').innerHTML = resp[0]['Active']
+    document.getElementById('confirmed').innerHTML = resp[0]['Confirmed']
+    document.getElementById('recovered').innerHTML = resp[0]['Recovered']
+    document.getElementById('deceased').innerHTML = resp[0]['Deceased']
+  })
+
+  d3.json(CUMULATIVE_JSON).then(resp => {
+    document.getElementById('active').innerHTML = resp[0]['Active']
+    document.getElementById('confirmed').innerHTML = resp[0]['Confirmed']
+    document.getElementById('recovered').innerHTML = resp[0]['Recovered']
+    document.getElementById('deceased').innerHTML = resp[0]['Deceased']
+  })
+</script>
+</body>
+</html>
