@@ -6,8 +6,9 @@ name: Generate Data
 on:
   # scheduled every night at 00:00
   schedule:
+    # https://crontab.guru/#45_23_*_*_*
     # every night at 11:00
-    - cron: "0 23 * * *"
+    - cron: "45 23 * * *"
 
   # Triggers the workflow on push or pull request events but only for the main branch
   # push:
