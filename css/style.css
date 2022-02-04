@@ -18,15 +18,15 @@
   --border-radius: 2px;
 
   /* Colors */
-  --color-active      :#1AC1D3;   /* rgba(26, 193, 211, 1) */
-  --color-recovered    :#83C489;   /* rgba(131, 196, 137, 1) */
-  --color-vaccinated  :#F2C36D;   /* rgba(242, 195, 109, 1) */
-  --color-confirmed   :#DA3F2F;   /* rgba(218, 63, 47, 1) */
-  --color-deceased    :#595959;   /* rgba(89, 89, 89, 1) */
-  --color-neutral     :#6DA8F2;   /* rgba(109, 168, 242, 1) */
+  --color-active            :#1AC1D3;   /* rgba(26, 193, 211, 1) */
+  --color-recovered         :#83C489;   /* rgba(131, 196, 137, 1) */
+  --color-vaccinated        :#F2C36D;   /* rgba(242, 195, 109, 1) */
+  --color-confirmed         :#DA3F2F;   /* rgba(218, 63, 47, 1) */
+  --color-deceased          :#595959;   /* rgba(89, 89, 89, 1) */
+  --color-neutral           :#6DA8F2;   /* rgba(109, 168, 242, 1) */
 
   --color-active-light      :rgba(26, 193, 211, 0.1);
-  --color-recovered-light    :rgba(131, 196, 137, 0.1);
+  --color-recovered-light   :rgba(131, 196, 137, 0.1);
   --color-vaccinated-light  :rgba(242, 195, 109, 0.1);
   --color-confirmed-light   :rgba(218, 63, 47, 0.1);
   --color-deceased-light    :rgba(89, 89, 89, 0.1);
@@ -38,7 +38,7 @@
 }
 
 #topcards .col {
-  padding: 1rem;
+  padding: var(--padding-base);
   border-radius: var(--border-radius);
   cursor: pointer;
 }
