@@ -17,17 +17,6 @@ DISTRICT_NAME = 'Vadodara'
 COWIN_STATE_ID = 11
 COWIN_DISTR_ID = 155
 
-def data_exists(dt, df):
-    '''
-    check if data exists in the dataframe for a given date
-
-    :param: <datetime>      - date object to check
-    :param: <pd.DataFrame>  - data frame to check in
-
-    :returns: <bool>        - True of exists, False otherwise
-    '''
-    pass
-
 
 def cowin_data(from_date, to_date):
     '''
@@ -71,11 +60,19 @@ def cowin_data(from_date, to_date):
             'vac_45_60': vad_data['vaccinationByAge']['vac_45_60'],
             'above_60': vad_data['vaccinationByAge']['above_60']
         }
-        new_data_arr.append(new_data)
+
+        # if data already exists, replace with new_data values
+        if old_df[old_df['updated_on'] == curr_date.strftime('%d-%m-%Y')].empty == False:
+            print('replaced values for', curr_date.strftime('%d-%m-%Y'))
+            old_df[old_df['updated_on'] == curr_date.strftime('%d-%m-%Y')] = list(new_data.values())
+        else:
+            new_data_arr.append(new_data)
 
     new_df = pd.DataFrame(new_data_arr)
     merged_df = pd.concat([old_df, new_df]).drop_duplicates().reset_index(drop=True)
     merged_df.to_json(VACC_DATA, orient='records')
+    return merged_df
+
 
 if __name__ == '__main__':
     for url in DWNLD_MAP:
@@ -84,4 +81,3 @@ if __name__ == '__main__':
         vad_df = df[df['District'].str.contains(DISTRICT_NAME)]
         vad_df.to_json(os.path.join(OUTPUT_DIR, '{}.json'.format(DWNLD_MAP[url])), orient='records')
     cowin_data(datetime.date.today(), datetime.date.today())
-
