@@ -60,43 +60,25 @@
           <span></span>
         </div>
       </div>
-    </div>
 
-    <div class="b-example-divider"></div>
+      <div class="b-example-divider"></div>
+
+      <div class="row g-5">
+        <div class="col-md-6">
+          <h2>Cumulative timeline</h2>
+          <svg id="svg_cumulative_timeline"></svg>
+          <p>adf asdf </p>
+        </div>
+
+        <div class="col-md-6">
+          <h2>Delta timeline</h2>
+          <svg id="svg_delta_timeline"></svg>
+          <p>adf asdf </p>
+        </div>
+      </div>
+
+    </div><!-- container -->
+
   </main>
-
-<script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
-<script type="text/javascript">
-  const CUMULATIVE_JSON = 'https://open-vadodara.github.io/covid19/data/cumulative.json'
-  const TIMESERIES_JSON = 'https://open-vadodara.github.io/covid19/data/timeseries.json'
-  const VACCINATION_JSON = 'https://open-vadodara.github.io/covid19/data/vaccination.json'
-
-  let up_down = (num) => {
-    if (num > 0) return '<i class="fas fa-long-arrow-alt-up"></i>&nbsp;'
-    else return '<i class="fas fa-long-arrow-alt-down"></i>&nbsp;'
-  }
-
-  d3.json(CUMULATIVE_JSON).then(resp => {
-    document.querySelector('#active h4').innerHTML = resp[0]['Active']
-    document.querySelector('#confirmed h4').innerHTML = resp[0]['Confirmed']
-    document.querySelector('#recovered h4').innerHTML = resp[0]['Recovered']
-    document.querySelector('#deceased h4').innerHTML = resp[0]['Deceased']
-  })
-
-  d3.json(CUMULATIVE_JSON).then(resp => {
-    document.querySelector('#active span').innerHTML = up_down(resp[0]['Delta_Active']) + Math.abs(resp[0]['Delta_Active'])
-    document.querySelector('#confirmed span').innerHTML = up_down(resp[0]['Delta_Confirmed']) + Math.abs(resp[0]['Delta_Confirmed'])
-    document.querySelector('#recovered span').innerHTML = up_down(resp[0]['Delta_Recovered']) + Math.abs(resp[0]['Delta_Recovered'])
-    document.querySelector('#deceased span').innerHTML = up_down(resp[0]['Delta_Deceased']) + Math.abs(resp[0]['Delta_Deceased'])
-  })
-
-  d3.json(VACCINATION_JSON).then(resp => {
-    recent = resp[resp.length - 1]
-    recent_but_one = resp[resp.length - 2]
-    diff = recent['total_vaccinations'] - recent_but_one['total_vaccinations']
-    document.querySelector('#vaccinated h4').innerHTML = recent['total_vaccinations']
-    document.querySelector('#vaccinated span').innerHTML = up_down(diff) + diff
-  })
-</script>
 </body>
 </html>

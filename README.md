@@ -1,157 +1,70 @@
-# covid19
+# Getting Started with Create React App
 
-Covid19 Cases in Vadodara
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Data pulled from covid19bharat.org (an initiative by DataKind Bengaluru)
+## Available Scripts
 
-# API
+In the project directory, you can run:
 
-### Cumulative Cases
-https://open-vadodara.github.io/covid19/data/cumulative.json
+### `npm start`
 
-### Time Series of Cumulative Cases
-https://open-vadodara.github.io/covid19/data/timeseries.json
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Vaccination Data
-https://open-vadodara.github.io/covid19/data/vaccination.json
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
+### `npm test`
 
-**Sample data format from cowin**
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```javascript
-{
-    'topBlock':
-    {
-        'sites':
-        {
-            'total': 27,
-            'govt': 27,
-            'pvt': 0,
-            'today': None
-        },
-        'sessions':
-        {
-            'total': 3802,
-            'govt': 3802,
-            'pvt': 0,
-            'today': None
-        },
-        'registration':
-        {
-            'total': None,
-            'male': None,
-            'female': None,
-            'others': None,
-            'today': None
-        },
-        'vaccination':
-        {
-            'total': 2381681,
-            'male': 1267703,
-            'female': 1097441,
-            'others': 404,
-            'covishield': 2111635,
-            'covaxin': 270046,
-            'sputnik': 0,
-            'zycov': 0,
-            'today': 579,
-            'tot_dose_1': 1210988,
-            'tot_dose_2': 1154562,
-            'tot_pd': 16131,
-            'total_doses': 2381681,
-            'today_dose_one': 18,
-            'today_dose_two': 412,
-            'today_dose_pd': 149,
-            'today_male': 319,
-            'today_female': 260,
-            'today_others': 0,
-            'today_aefi': 0,
-            'aefi': 76,
-            'yesterday_vac': 1082,
-            'yesterday_dose_one': 79,
-            'yesterday_dose_two': 551,
-            'yesterday_dose_pd': 452
-        }
-    },
-    'vaccinationDoneByTime': [
-        {
-            'ts': '2022-01-16 10',
-            'timestamps': '2022-01-16T11:00:00.000Z',
-            'label': '10:00-11:00',
-            'count': 31,
-            'dose_one': 1,
-            'dose_two': 26,
-            'dose_pd': 4
-        },
-        ...
-    ],
-    'last7DaysRegistration': [],
-    'last30DaysAefi': [
-        {
-            'vaccine_date': '2021-12-17',
-            'aefi': 0
-        },
-        ...
-    ],
-    'last5daySessionStatus': [
-        {
-            'session_date': '2021-12-20',
-            'total': '84',
-            'planned': '2',
-            'ongoing': '49',
-            'completed': '33'
-        },
-        ...
-    ],
-    'getBeneficiariesGroupBy': [
-         {
-            'session_site_id': '222254',
-            'title': 'Bhadarwa PHC',
-            'session_site_name': 'Bhadarwa PHC',
-            'total': 12915,
-            'partial_vaccinated': 7365,
-            'totally_vaccinated': 5426,
-            'precaution_dose': 124,
-            'today': 92
-        },
-        ...
-    ],
-    'reportFor': 'State : 11 & District: 155 | 2022-01-16',
-    'aefiPercentage': 0.006,
-    'vaccinationByAge':
-    {
-        'total': 2381681,
-        'vac_15_17': 49837,
-        'vac_18_45': 1302903,
-        'vac_45_60': 645235,
-        'above_60': 383706
-    },
-    'sessionSiteData':
-    {
-        'total_sites': '1102',
-        'govt_sites': '1058',
-        'pvt_sites': '44',
-        'sites_today': 27,
-        'total_sessions': '35230',
-        'govt_sessions': '33839',
-        'pvt_sessions': '1391'
-    },
-    'vaccinationDoneByTimeAgeWise': [
-        {
-            'ts': '2022-01-16 10',
-            'timestamps': '2022-01-16T11:00:00.000Z',
-            'label': '10:00-11:00',
-            'total': 31,
-            'vac_15_17': 0,
-            'vac_18_45': 18,
-            'vac_45_60': 3,
-            'vac_60_above': 10,
-            'rural': 30,
-            'urban': 5
-        },
-        ...
-    ],
-    'timestamp': '2022-01-16 17:30'
-}
+### `npm run build`
 
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
