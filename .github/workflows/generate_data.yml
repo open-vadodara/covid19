@@ -38,7 +38,7 @@ jobs:
           git config user.name "kaizer1v"
           git config user.email "kaizer1v@gmail.com"
 
-      - name: Generate Data
+      - name: ✅ Generate Data
         run: |
           echo "Scraping start!"
           python main.py
