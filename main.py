@@ -1,11 +1,13 @@
 import os
+import json
 import requests
 import datetime
 import pandas as pd
 
 
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'data')
 VACC_DATA = os.path.join(OUTPUT_DIR, 'vaccination.json')
+VACC_DATA_JS = os.path.join(OUTPUT_DIR, 'vaccination_js.json')
 
 # map url to filename
 DWNLD_MAP = {
@@ -28,7 +30,7 @@ def cowin_data(from_date, to_date):
     old_df = pd.DataFrame(columns=['updated_on'])
     if os.path.exists(VACC_DATA) and os.path.getsize(VACC_DATA) != 0:
         old_df = pd.read_json(VACC_DATA)
-        # old_df['updated_on'] = pd.to_datetime(old_df['updated_on'])
+        old_df['updated_on'] = pd.to_datetime(old_df['updated_on'], format='%d-%m-%Y')
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         params = {
@@ -62,15 +64,29 @@ def cowin_data(from_date, to_date):
         }
 
         # if data already exists, replace with new_data values
-        if old_df[old_df['updated_on'] == curr_date.strftime('%d-%m-%Y')].empty == False:
+        if old_df[old_df['updated_on'] == curr_date.strftime('%Y-%m-%d')].empty == False:
             print('replaced values for', curr_date.strftime('%d-%m-%Y'))
             old_df[old_df['updated_on'] == curr_date.strftime('%d-%m-%Y')] = list(new_data.values())
+            new_data_arr.append(new_data)
+            new_df = pd.DataFrame(new_data_arr)
+            new_df['updated_on'] = pd.to_datetime(new_df['updated_on'], format='%d-%m-%Y')
+            merged_df = pd.concat([old_df, new_df]).drop_duplicates().reset_index(drop=True)
         else:
             new_data_arr.append(new_data)
+            new_df = pd.DataFrame(new_data_arr)
+            new_df['updated_on'] = pd.to_datetime(new_df['updated_on'], format='%d-%m-%Y')
+            merged_df = pd.concat([old_df, new_df]).drop_duplicates().reset_index(drop=True)
 
-    new_df = pd.DataFrame(new_data_arr)
-    merged_df = pd.concat([old_df, new_df]).drop_duplicates().reset_index(drop=True)
+    merged_df.sort_values(by='updated_on', inplace=True)
+    merged_df['updated_on'] = merged_df['updated_on'].dt.strftime('%d-%m-%Y')
     merged_df.to_json(VACC_DATA, orient='records')
+
+    # save df as javascript friendly file (re-writes entire file)
+    with open(VACC_DATA_JS, 'w') as jf:
+        json.dump({
+            'vaccination': merged_df.fillna('null').to_dict(orient='records')
+        }, jf)
+
     return merged_df
 
 
@@ -78,6 +94,12 @@ if __name__ == '__main__':
     for url in DWNLD_MAP:
         print('Generating {} data from {}'.format(DWNLD_MAP[url], url))
         df = pd.read_csv(url)
-        vad_df = df[df['District'].str.contains(DISTRICT_NAME)]
-        vad_df.to_json(os.path.join(OUTPUT_DIR, '{}.json'.format(DWNLD_MAP[url])), orient='records')
-    cowin_data(datetime.date.today(), datetime.date.today())
+        vad_df = df[df['District'].str.contains(DISTRICT_NAME)].fillna('null')
+
+        # save `df` as json file
+        json_file = os.path.join(OUTPUT_DIR, '{}.json'.format(DWNLD_MAP[url]))
+        with open(json_file, 'w') as jf:
+            json.dump({
+                DWNLD_MAP[url]: vad_df.to_dict(orient='records')
+            }, jf)
+    cowin_data(datetime.date(2022, 2, 5), datetime.date.today())

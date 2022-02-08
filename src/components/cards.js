@@ -4,10 +4,10 @@ class Cards extends React.Component {
   constructor(props) {
     super(props)
 
-    this.get_vacc_data = this.get_vacc_data.bind(this)
+    this.calc_vacc_data = this.calc_vacc_data.bind(this)
   }
 
-  get_vacc_data(vacc) {
+  calc_vacc_data(vacc) {
     return {
       'latest': vacc[vacc.length - 1]['total_vaccinations'],
       'delta': vacc[vacc.length - 1]['total_vaccinations'] - vacc[vacc.length - 2]['total_vaccinations']
@@ -15,9 +15,9 @@ class Cards extends React.Component {
   }
 
   render() {
-    if(this.props.type == 'Vaccination') {
+    if(this.props.type === 'Vaccination') {
       // Vaccination card
-      let vacc_data = this.get_vacc_data(this.props.data)
+      let vacc_data = this.calc_vacc_data(this.props.data)
       return (
         <div id="vaccination" className="feature col">
           <h2>Vaccination</h2>
