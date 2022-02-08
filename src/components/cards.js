@@ -34,8 +34,8 @@ class Cards extends React.Component {
       return (
         <div id={dtype.toLowerCase()} className="feature col">
           <h2>{dtype}</h2>
-          <h4>{dcum[0][dtype]}</h4>
-          <span>{dcum[0][delta]}</span>
+          <h4>{dcum[dtype]}</h4>
+          <span>{dcum[delta]}</span>
         </div>
       )
     }
