@@ -4,13 +4,15 @@ Covid19 Cases in Vadodara
 
 Data pulled from covid19bharat.org (an initiative by DataKind Bengaluru)
 
-# API
+# Data
+
+You can download the generated data from this repository within the `src/data/` folder on the `main` branch.
 
 ### Cumulative Cases
-https://open-vadodara.github.io/covid19/data/cumulative.json
+https://github.com/open-vadodara/covid19/tree/main/src/data/cumulative.json
 
 ### Time Series of Cumulative Cases
-https://open-vadodara.github.io/covid19/data/timeseries.json
+https://github.com/open-vadodara/covid19/tree/main/src/data/timeseries.json
 
 ### Vaccination Data
-https://open-vadodara.github.io/covid19/data/vaccination.json
+https://github.com/open-vadodara/covid19/tree/main/src/data/vaccination.json
