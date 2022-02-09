@@ -49,3 +49,13 @@ jobs:
           set -e
           git commit -am "data updated on - $(date)"
           git push --force-with-lease origin main
+          
+      - name: Build npm dependencies
+        run: npm run build
+
+      - name: Deploy react app with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
