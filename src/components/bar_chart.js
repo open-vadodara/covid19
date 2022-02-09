@@ -49,8 +49,6 @@ class BarChart extends Component {
       .style('fill', this.bar_colour)
       .text((d) => d['Confirmed']);
 
-    // d3.select(node).select(`rect[id='${this.props.meta[0]}']`).style('fill', '#8D2BFF');
-    // d3.select(node).select(`rect[id='${this.props.meta[1]}']`).style('fill', '#0D8EFF');
   }
 
   update_bar_chart() {
