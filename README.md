@@ -16,3 +16,31 @@ https://github.com/open-vadodara/covid19/tree/main/src/data/timeseries.json
 
 ### Vaccination Data
 https://github.com/open-vadodara/covid19/tree/main/src/data/vaccination.json
+
+
+# Insights
+
+- Total Confirmed
+- Total Active
+- Total Recovered
+- Total Deceased
+- Total Vaccinated
+  * Fully vaccinated
+  * Dose 1
+  * Dose 2
+  * Precautionary
+  * Type of vaccinations (covishield, covaxin, ...)
+
+- Total Deltas
+  * Confirmed
+  * Active
+  * Recovered
+  * Deceased
+
+- Over time
+  * Total Confirmed
+  * Recovered
+  * Deceased
+
+  * Case growth rate
+Total vaccination growth rate

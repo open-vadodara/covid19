@@ -19,7 +19,7 @@ class Cards extends React.Component {
       // Vaccination card
       let vacc_data = this.calc_vacc_data(this.props.data)
       return (
-        <div id="vaccination" className="feature col" onClick={ this.props.customClick.bind({'a': 123}) }>
+        <div id="vaccination" className="feature col" onClick={ this.props.customClick }>
           <h2>Vaccination</h2>
           <h4>{vacc_data['latest']}</h4>
           <span>{vacc_data['delta']}</span>
@@ -32,9 +32,9 @@ class Cards extends React.Component {
       let delta = `Delta_${dtype}`
 
       return (
-        <div id={dtype.toLowerCase()} className="feature col" onClick={ this.props.customClick.bind({'a': 5134}) }>
-          <h2>{dtype}</h2>
-          <h4>{dcum[dtype]}</h4>
+        <div id={dtype.toLowerCase()} className="feature col" onClick={ this.props.customClick }>
+          <h2>{dcum[dtype]}</h2>
+          <h4>{dtype}</h4>
           <span>{dcum[delta]}</span>
         </div>
       )

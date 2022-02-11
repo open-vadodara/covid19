@@ -1,18 +1,19 @@
-.wrapper {
-  font-size: 16px;
-  color: #666;
-  padding: 25px;
-}
+@import "style.css";
 
-svg {
-  overflow: visible;
-}
 
-text {
-  fill: red;
-  color: red;
-  font-size: 16px;
-}
+path.active, text.active          { fill: var(--color-active); color: var(--color-active); }
+path.recovered, text.recovered    { fill: var(--color-recovered); color: var(--color-recovered); }
+path.vaccinated, text.vaccinated  { fill: var(--color-vaccinated); color: var(--color-vaccinated); }
+path.confirmed, text.confirmed    { fill: var(--color-confirmed); color: var(--color-confirmed); }
+path.deceased, text.deceased      { fill: var(--color-deceased); color: var(--color-deceased); }
+
+path.active     { stroke: var(--color-active); }
+path.recovered  { stroke: var(--color-recovered); }
+path.vaccinated { stroke: var(--color-vaccinated); }
+path.confirmed  { stroke: var(--color-confirmed); }
+path.deceased   { stroke: var(--color-deceased); }
+
+path.pathstroke { fill: none; stroke-width: 2; }
 
 .subtitle text {
   text-decoration: underline;

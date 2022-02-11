@@ -53,3 +53,13 @@
 #topcards .col:nth-of-type(3):hover { background: var(--color-recovered); color: #fff; }
 #topcards .col:nth-of-type(4):hover { background: var(--color-deceased); color: #fff; }
 #topcards .col:nth-of-type(5):hover { background: var(--color-vaccinated); color: #fff; }
+
+#topcards .col:nth-of-type(1).selected { background: var(--color-confirmed); color: #fff; }
+#topcards .col:nth-of-type(2).selected { background: var(--color-active); color: #fff; }
+#topcards .col:nth-of-type(3).selected { background: var(--color-recovered); color: #fff; }
+#topcards .col:nth-of-type(4).selected { background: var(--color-deceased); color: #fff; }
+#topcards .col:nth-of-type(5).selected { background: var(--color-vaccinated); color: #fff; }
+
+
+/* SVGs */
+svg { overflow: visible; }
