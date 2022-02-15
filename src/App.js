@@ -3,6 +3,7 @@ import Cards from './components/cards';
 import BarChart from './components/bar_chart';
 import LineChart from './components/line_chart';
 import './App.css';
+import github_logo from'./images/github.png';
 
 const API_CUMULATIVE = require('./data/cumulative.json')
 const API_TIMESERIES = require('./data/timeseries.json')
@@ -30,6 +31,8 @@ class App extends React.Component {
   }
 
   render() {
+    let sel_data = this.state['sel_col'] === 'Vaccination' ? API_VACCINATION['vaccination'] : API_TIMESERIES['timeseries']
+
     return (
       <div className='container px-4 pb-2' id='featured-5'>
         <div id='topcards' className='row g-4 pb-5 row-cols-1 row-cols-lg-5'>
@@ -45,7 +48,7 @@ class App extends React.Component {
         <div className='row g-5'>
           <div className='col p-5'>
             <h2>Cumulative {this.state['sel_col']}</h2>
-            <LineChart data={ API_TIMESERIES['timeseries'] } type={ this.state['sel_col'] } size={ [1000, 800] } />
+            <LineChart data={ sel_data } type={ this.state['sel_col'] } size={ [1000, 800] } />
           </div>
         </div>
 
@@ -65,7 +68,11 @@ class App extends React.Component {
           </div>
 
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li className="ms-3"><a className="text-muted" target="_blank" href="https://github.com/open-vadodara"><i className="fa-brands fa-github"></i></a></li>
+            <li className="ms-3">
+              <a className="text-muted" target="_blank" href="https://github.com/open-vadodara">
+                <img src={github_logo} alt="Github Logo" style={{width: "2rem"}} />
+              </a>
+            </li>
           </ul>
         </footer>
 

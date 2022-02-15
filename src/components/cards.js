@@ -23,8 +23,8 @@ class Cards extends React.Component {
 
       return (
         <div id="vaccination" className={"feature col " + sel} onClick={ this.props.customClick }>
-          <h2>Vaccination</h2>
-          <h4>{vacc_data['latest']}</h4>
+          <h2>{vacc_data['latest']}</h2>
+          <h4>Vaccination</h4>
           <span className={up_down}>{Math.abs(vacc_data['delta'])}</span>
         </div>
       )
