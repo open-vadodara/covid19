@@ -15,14 +15,17 @@ class Cards extends React.Component {
   }
 
   render() {
+    let sel = (this.props.type === this.props.sel) ? 'selected' : ''
     if(this.props.type === 'Vaccination') {
       // Vaccination card
       let vacc_data = this.calc_vacc_data(this.props.data)
+      let up_down = (vacc_data['delta'] <= 0) ? 'delta-down' : 'delta-up'
+
       return (
-        <div id="vaccination" className="feature col" onClick={ this.props.customClick }>
+        <div id="vaccination" className={"feature col " + sel} onClick={ this.props.customClick }>
           <h2>Vaccination</h2>
           <h4>{vacc_data['latest']}</h4>
-          <span>{vacc_data['delta']}</span>
+          <span className={up_down}>{Math.abs(vacc_data['delta'])}</span>
         </div>
       )
     } else {
@@ -30,12 +33,12 @@ class Cards extends React.Component {
       let dtype = this.props.type
       let dcum = this.props.data
       let delta = `Delta_${dtype}`
-
+      let up_down = (dcum[delta] <= 0) ? 'delta-down' : 'delta-up'
       return (
-        <div id={dtype.toLowerCase()} className="feature col" onClick={ this.props.customClick }>
+        <div id={dtype.toLowerCase()} className={"feature col " + sel} onClick={ this.props.customClick }>
           <h2>{dcum[dtype]}</h2>
           <h4>{dtype}</h4>
-          <span>{dcum[delta]}</span>
+          <span className={up_down}>{Math.abs(dcum[delta])}</span>
         </div>
       )
     }

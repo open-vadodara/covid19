@@ -37,11 +37,14 @@
   --animation-duration: 180s;
 }
 
+body { font-family: 'Share', monospace; }
+
 #topcards .col {
   padding: var(--padding-base);
   border-radius: var(--border-radius);
   cursor: pointer;
 }
+
 #topcards .col:nth-of-type(1) { background: var(--color-confirmed-light); }
 #topcards .col:nth-of-type(2) { background: var(--color-active-light); }
 #topcards .col:nth-of-type(3) { background: var(--color-recovered-light); }
@@ -54,12 +57,14 @@
 #topcards .col:nth-of-type(4):hover { background: var(--color-deceased); color: #fff; }
 #topcards .col:nth-of-type(5):hover { background: var(--color-vaccinated); color: #fff; }
 
-#topcards .col:nth-of-type(1).selected { background: var(--color-confirmed); color: #fff; }
-#topcards .col:nth-of-type(2).selected { background: var(--color-active); color: #fff; }
-#topcards .col:nth-of-type(3).selected { background: var(--color-recovered); color: #fff; }
-#topcards .col:nth-of-type(4).selected { background: var(--color-deceased); color: #fff; }
-#topcards .col:nth-of-type(5).selected { background: var(--color-vaccinated); color: #fff; }
+#topcards #confirmed.selected   { background: var(--color-confirmed); color: #fff; }
+#topcards #active.selected      { background: var(--color-active); color: #fff; }
+#topcards #recovered.selected   { background: var(--color-recovered); color: #fff; }
+#topcards #deceased.selected    { background: var(--color-deceased); color: #fff; }
+#topcards #vaccination.selected { background: var(--color-vaccinated); color: #fff; }
 
+.delta-up::before   { content: '\2191 '; font-size: 1.5rem; }
+.delta-down::before { content: '\2193 '; font-size: 1.5rem; }
 
 /* SVGs */
 svg { overflow: visible; }

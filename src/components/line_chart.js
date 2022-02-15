@@ -2,15 +2,14 @@ import React from 'react';
 import * as d3 from 'd3';
 import "../css/line_chart.css";
 
-const margin = { top: 10, right: 0, bottom: 50, left: 50 },
-      width = 960 - margin.left - margin.right,
-      height = 280 - margin.top - margin.bottom,
-      color = "blue";
-
 export default function LineChart(props) {
+  const margin = { top: 10, right: 0, bottom: 50, left: 50 },
+        width = 960 - margin.left - margin.right,
+        height = 280 - margin.top - margin.bottom
+
   const sel_col = props.type
   const data = props.data
-  const parseDate = d3.timeParse("%Y-%m-%d");
+  const parseDate = d3.timeParse("%Y-%m-%d")
 
   const yMinValue = d3.min(data, (d) => d[sel_col] === "null" ? 0 : d[sel_col]),
         yMaxValue = d3.max(data, (d) => d[sel_col] === "null" ? 0 : d[sel_col]);
@@ -52,13 +51,14 @@ export default function LineChart(props) {
     const bisect = d3.bisector((d) => parseDate(d['Date'])).left,
           x0 = getX.invert(d3.pointer(e, this)[0]),
           index = bisect(data, x0, 1);
+    // console.log(bisect(data, x0, 1))
   };
 
   return (
     <svg
       viewBox={`0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`} onMouseMove={handleMouseMove} >
 
-      <g className="axis" ref={getYAxis} />
+      <g className="axis yAxis" ref={getYAxis} />
       <g className="axis xAxis" ref={getXAxis} transform={`translate(0, ${height})`} />
 
       <path className={sel_col.toLowerCase()} d={areaPath} opacity={0.3} />

@@ -24,3 +24,7 @@ path.pathstroke { fill: none; stroke-width: 2; }
 .axis.xAxis line {
   display: none;
 }
+
+.axis.yAxis line {
+  stroke-width: 0.2;
+}

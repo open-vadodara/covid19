@@ -33,11 +33,11 @@ class App extends React.Component {
     return (
       <div className='container px-4 pb-2' id='featured-5'>
         <div id='topcards' className='row g-4 pb-5 row-cols-1 row-cols-lg-5'>
-          <Cards type='Confirmed' data={this.state['cumulative']} customClick={ () => this.handleClick('Confirmed') } />
-          <Cards type='Active' data={this.state['cumulative']} customClick={ () => this.handleClick('Active') } />
-          <Cards type='Recovered' data={this.state['cumulative']} customClick={ () => this.handleClick('Recovered') } />
-          <Cards type='Deceased' data={this.state['cumulative']} customClick={ () => this.handleClick('Deceased') } />
-          <Cards type='Vaccination' data={this.state['vaccination']} customClick={ () => this.handleClick('Vaccination') } />
+          <Cards type='Confirmed' sel={this.state.sel_col} data={this.state['cumulative']} customClick={ () => this.handleClick('Confirmed') } />
+          <Cards type='Active' sel={this.state.sel_col} data={this.state['cumulative']} customClick={ () => this.handleClick('Active') } />
+          <Cards type='Recovered' sel={this.state.sel_col} data={this.state['cumulative']} customClick={ () => this.handleClick('Recovered') } />
+          <Cards type='Deceased' sel={this.state.sel_col} data={this.state['cumulative']} customClick={ () => this.handleClick('Deceased') } />
+          <Cards type='Vaccination' sel={this.state.sel_col} data={this.state['vaccination']} customClick={ () => this.handleClick('Vaccination') } />
         </div>
 
         <div className='b-example-divider'></div>
@@ -55,6 +55,19 @@ class App extends React.Component {
             {/*<LineChart data={ API_TIMESERIES['timeseries'] } type='Tested' size={ [500, 500] } />*/}
           </div>
         </div>
+
+        <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div className="col-md-4 d-flex align-items-center">
+            <a href="/" className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg className="bi" width="30" height="24">asd</svg>
+            </a>
+            <span className="text-muted">© 2021 Open Vadodara</span>
+          </div>
+
+          <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li className="ms-3"><a className="text-muted" target="_blank" href="https://github.com/open-vadodara"><i className="fa-brands fa-github"></i></a></li>
+          </ul>
+        </footer>
 
       </div>
     )
