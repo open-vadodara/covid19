@@ -50,6 +50,9 @@ jobs:
           git commit -am "data updated on - $(date)"
           git push --force-with-lease origin main
           
+      - name: Install npm packages
+        run: npm install
+
       - name: Build npm dependencies
         run: npm run build
 
