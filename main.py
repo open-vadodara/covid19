@@ -102,4 +102,4 @@ if __name__ == '__main__':
             json.dump({
                 DWNLD_MAP[url]: vad_df.to_dict(orient='records')
             }, jf)
-    cowin_data(datetime.date(2022, 2, 5), datetime.date.today())
+    cowin_data(datetime.date.today(), datetime.date.today())
