@@ -66,5 +66,11 @@ body { font-family: 'Share', monospace; }
 .delta-up::before   { content: '\2191 '; font-size: 1.5rem; }
 .delta-down::before { content: '\2193 '; font-size: 1.5rem; }
 
+circle.confirmed           { fill: var(--color-confirmed); }
+circle.active              { fill: var(--color-active); }
+circle.recovered           { fill: var(--color-recovered); }
+circle.deceased            { fill: var(--color-deceased); }
+circle.vaccination         { fill: var(--color-vaccinated); }
+
 /* SVGs */
 svg { overflow: visible; }

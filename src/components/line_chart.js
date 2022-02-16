@@ -3,9 +3,8 @@ import * as d3 from 'd3';
 import "../css/line_chart.css";
 
 export default function LineChart(props) {
-  const margin = { top: 10, right: 0, bottom: 50, left: 50 },
-        width = 960 - margin.left - margin.right,
-        height = 280 - margin.top - margin.bottom
+  const width = 960,
+        height = 280
 
   // type dependent variables
   const data = props.data
@@ -50,16 +49,24 @@ export default function LineChart(props) {
     .y1(() => getY(yMinValue - 1))
     .curve(d3.curveMonotoneX)(data);
 
-  const handleMouseMove = (e) => {
-    const bisect = d3.bisector((d) => parseDate(d[date_col])).left,
-          x0 = getX.invert(d3.pointer(e, this)[0]),
-          index = bisect(data, x0, 1);
-    // console.log(bisect(data, x0, 1))
+  const handleMouseMove = (e, i) => {
+    let x0 = getX.invert(d3.pointer(e, this)[0])
+    let date_frmt = x0.toISOString().split('T')[0]
+    let curr_val = data.filter((d) => d[date_col] === date_frmt)[0][sel_col]
+    d3.select('.graph_info text:nth-of-type(1)').text(x0.toDateString().substr(4))
+    d3.select('.graph_info text:nth-of-type(2)').text(curr_val)
+    let c = d3.select('.graph_info circle')
+        .attr('cx', getX(parseDate(date_frmt)))
+        .attr('cy', getY(curr_val) - 30)
   };
 
   return (
-    <svg
-      viewBox={`0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`} onMouseMove={handleMouseMove} >
+    <svg viewBox={`0 0 ${width} ${height}`} onMouseMove={handleMouseMove}>
+      <g className='graph_info' transform='translate(0, 30)'>
+        <text className={ sel_class }>Date</text>
+        <text className={ sel_class } transform='translate(0, 20)'>Total Value + delta value</text>
+        <circle r="5" className={ sel_class }></circle>
+      </g>
 
       <g className="axis yAxis" ref={getYAxis} />
       <g className="axis xAxis" ref={getXAxis} transform={`translate(0, ${height})`} />
