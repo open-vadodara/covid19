@@ -1,6 +1,5 @@
 import React from 'react';
 import Cards from './components/cards';
-import BarChart from './components/bar_chart';
 import LineChart from './components/line_chart';
 import './App.css';
 import github_logo from'./images/github.png';
@@ -69,7 +68,7 @@ class App extends React.Component {
 
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li className="ms-3">
-              <a className="text-muted" target="_blank" href="https://github.com/open-vadodara">
+              <a rel="noopener noreferrer" className="text-muted" target="_blank" href="https://github.com/open-vadodara">
                 <img src={github_logo} alt="Github Logo" style={{width: "2rem"}} />
               </a>
             </li>

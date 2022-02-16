@@ -55,9 +55,9 @@ export default function LineChart(props) {
     let curr_val = data.filter((d) => d[date_col] === date_frmt)[0][sel_col]
     d3.select('.graph_info text:nth-of-type(1)').text(x0.toDateString().substr(4))
     d3.select('.graph_info text:nth-of-type(2)').text(curr_val)
-    let c = d3.select('.graph_info circle')
-        .attr('cx', getX(parseDate(date_frmt)))
-        .attr('cy', getY(curr_val) - 30)
+    d3.select('.graph_info circle')
+      .attr('cx', getX(parseDate(date_frmt)))
+      .attr('cy', getY(curr_val) - 30)
   };
 
   return (
