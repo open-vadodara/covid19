@@ -7,7 +7,10 @@ export default function LineChart(props) {
         height = 280
 
   // type dependent variables
-  const data = props.data
+  const data = props.data.map(d => {
+    let active = {'Active': d['Confirmed'] - d['Deceased'] - d['Recovered'] - d['Other'] }
+    return { ...d, ...active }
+  })
   const sel_col = (props.type === 'Vaccination') ? 'total_vaccinations' : props.type
   const sel_class = (props.type === 'Vaccination') ? 'vaccinated' : props.type.toLowerCase()
   const date_col = (props.type === 'Vaccination') ? 'updated_on' : 'Date'
@@ -54,7 +57,11 @@ export default function LineChart(props) {
     let date_frmt = x0.toISOString().split('T')[0]
     let curr_val = data.filter((d) => d[date_col] === date_frmt)[0][sel_col]
     d3.select('.graph_info text:nth-of-type(1)').text(x0.toDateString().substr(4))
-    d3.select('.graph_info text:nth-of-type(2)').text(curr_val)
+    d3.select('.graph_info text:nth-of-type(2)').text(
+      curr_val.toLocaleString('en-IN', {
+        maximumFractionDigits: 2
+      })
+    )
     d3.select('.graph_info circle')
       .attr('cx', getX(parseDate(date_frmt)))
       .attr('cy', getY(curr_val) - 30)

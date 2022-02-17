@@ -23,7 +23,11 @@ class Cards extends React.Component {
 
       return (
         <div id="vaccination" className={"feature col " + sel} onClick={ this.props.customClick }>
-          <h2>{vacc_data['latest']}</h2>
+          <h2>{
+            vacc_data['latest'].toLocaleString('en-IN', {
+              maximumFractionDigits: 2
+            })
+          }</h2>
           <h4>Vaccination</h4>
           <span className={up_down}>{Math.abs(vacc_data['delta'])}</span>
         </div>
@@ -36,7 +40,11 @@ class Cards extends React.Component {
       let up_down = (dcum[delta] <= 0) ? 'delta-down' : 'delta-up'
       return (
         <div id={dtype.toLowerCase()} className={"feature col " + sel} onClick={ this.props.customClick }>
-          <h2>{dcum[dtype]}</h2>
+          <h2>{
+            dcum[dtype].toLocaleString('en-IN', {
+              maximumFractionDigits: 2
+            })
+          }</h2>
           <h4>{dtype}</h4>
           <span className={up_down}>{Math.abs(dcum[delta])}</span>
         </div>
