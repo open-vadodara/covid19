@@ -1,12 +1,16 @@
 import React from 'react';
 import Cards from './components/cards';
 import LineChart from './components/line_chart';
+import InfoCard from './components/info_card';
+
 import './App.css';
 import github_logo from'./images/github.png';
 
 const API_CUMULATIVE = require('./data/cumulative.json')
 const API_TIMESERIES = require('./data/timeseries.json')
 const API_VACCINATION = require('./data/vaccination_js.json')
+const POPULATION = 3639775    // static info
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +25,36 @@ class App extends React.Component {
       'vaccination': API_VACCINATION['vaccination'],
       'sel_col': 'Confirmed'
     }
+
+    let confirmed_per_lakh = Math.round(((this.state['cumulative']['Confirmed'] / POPULATION) * 100000) * 100) / 100
+    let confirmed_case_ratio = Math.round((confirmed_per_lakh / POPULATION) * 100 * 100) / 100
+    let active_ratio = Math.round((this.state['cumulative']['Active'] / this.state['cumulative']['Confirmed']) * 10 * 100) / 100
+    let recovery_ratio = Math.round((this.state['cumulative']['Recovered'] / this.state['cumulative']['Confirmed']) * 100 * 100) / 100
+    let fatality_ratio = Math.round((this.state['cumulative']['Deceased'] / this.state['cumulative']['Confirmed']) * 100 * 100) / 100
+
+    this.insights = {
+      'confirmed_per_lakh': {
+        'title': 'Confirmed per lakh',
+        'num': confirmed_per_lakh,
+        'desc': `~ ${Math.floor(confirmed_per_lakh)} out of every lakh have tested positive. That is a ${ confirmed_case_ratio }% ratio of confirmed cases`
+      },
+      'active_ratio': {
+        'title': 'Active Ratio',
+        'num': active_ratio,
+        'desc': `For every 100 confirmed cases, ~${active_ratio} are currently infected`
+      },
+      'recovery_ratio': {
+        'title': 'Recovery Ratio',
+        'num': recovery_ratio,
+        'desc': `For every 100 confirmed cases, ~${recovery_ratio}% have recovered from the virus`
+      },
+      'fatality_ratio': {
+        'title': 'Fatality Ratio',
+        'num': fatality_ratio,
+        'desc': `For every 100 confirmed cases, ~${fatality_ratio} have unfortunately passed away from the virus`
+      }
+    }
+
   }
 
   handleClick(param) {
@@ -44,18 +78,20 @@ class App extends React.Component {
 
         <div className='b-example-divider'></div>
 
-        <div className='row g-5'>
-          <div className='col p-5'>
-            <h2>Cumulative {this.state['sel_col']}</h2>
-            <LineChart data={ sel_data } type={ this.state['sel_col'] } size={ [1000, 800] } />
-          </div>
+        <div className='row g-5 mb-5 pb-5'>
+          <LineChart data={ sel_data } type={ this.state['sel_col'] } size={ [1000, 800] } />
         </div>
 
-        <div className='row g-5'>
-          <div className='col-md-2'>
-            <h2>Delta {this.state['sel_col']}</h2>
-            {/*<LineChart data={ API_TIMESERIES['timeseries'] } type='Tested' size={ [500, 500] } />*/}
-          </div>
+        <div className='row g-5 mb-5 pb-5'>
+          <InfoCard insights={ this.insights['confirmed_per_lakh'] } />
+          <InfoCard insights={ this.insights['active_ratio'] } />
+          <InfoCard insights={ this.insights['recovery_ratio'] } />
+          <InfoCard insights={ this.insights['fatality_ratio'] } />
+        </div>
+
+        <div className='mx-5'>
+          <p>Source: Case data being pulled from Gujarat state bulletin. Vaccination data from COWIN</p>
+          <p>You can download this data from this <a href='https://github.com/open-vadodara/covid19/tree/main/src/data'>github repository</a>. This data gets updated every midnight. This data is meant to be open and free to be consumed in anyway possible. This project was built for the betterment of humanity.</p>
         </div>
 
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
