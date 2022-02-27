@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as d3 from 'd3';
 import "../css/line_chart.css";
 
 export default function LineChart(props) {
+
   const width = 960,
         height = 280
 
-  // type dependent variables
+  // calculate `Active` from data
   const data = props.data.map(d => {
     let active = {'Active': d['Confirmed'] - d['Deceased'] - d['Recovered'] - d['Other'] }
     return { ...d, ...active }
@@ -59,7 +60,7 @@ export default function LineChart(props) {
         date = ("0" + (x0.getDay() + 1)).slice(-2)
 
     let date_frmt = (sel_class === 'vaccinated') ? [date, month, year].join('-') : x0.toISOString().split('T')[0]
-    // let date_frmt = (sel_col === 'Vaccination') ? [date, month, year].join('-') : [year, month, date].join('-')
+
     let curr_val = data.filter((d) => d[date_col] === date_frmt)[0][sel_col]
     d3.select('.graph_info text:nth-of-type(1)').text(x0.toDateString().substr(4))
     d3.select('.graph_info text:nth-of-type(2)').text(
@@ -73,18 +74,18 @@ export default function LineChart(props) {
   };
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} onMouseMove={handleMouseMove}>
+    <svg viewBox={`0 0 ${width} ${height}`} onMouseMove={handleMouseMove} >
       <text className={'title ' + sel_class}>{ props.type }</text>
       <g className='graph_info' transform='translate(0, 30)'>
-        <text className={ sel_class }></text>
-        <text className={ sel_class } transform='translate(0, 20)'></text>
+        <text className={ sel_class }>{ data[0][date_col] }</text>
+        <text className={ sel_class } transform='translate(0, 20)'>{ data[0][sel_col] }</text>
         <circle r="5" className={ sel_class }></circle>
       </g>
 
       <g className="axis yAxis" ref={getYAxis} />
       <g className="axis xAxis" ref={getXAxis} transform={`translate(0, ${height})`} />
 
-      <path className={ sel_class } d={ areaPath } opacity={0.3} />
+      <path className={ sel_class } d={ areaPath } opacity={0.3} onMouseMove={handleMouseMove} />
       <path className={"pathstroke " + sel_class} d={linePath} />
 
       {data.map((item, index) => {
