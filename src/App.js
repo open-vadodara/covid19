@@ -11,7 +11,6 @@ const API_TIMESERIES = require('./data/timeseries.json')
 const API_VACCINATION = require('./data/vaccination_js.json')
 const POPULATION = 3639775    // static info
 
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -23,7 +22,8 @@ class App extends React.Component {
       'cumulative': API_CUMULATIVE['cumulative'][0],
       'timeseries': API_TIMESERIES['timeseries'],
       'vaccination': API_VACCINATION['vaccination'],
-      'sel_col': 'Confirmed'
+      'sel_col': 'Confirmed',
+      'days': 0
     }
 
     let confirmed_per_lakh = Math.round(((this.state['cumulative']['Confirmed'] / POPULATION) * 100000) * 100) / 100
@@ -58,13 +58,15 @@ class App extends React.Component {
   }
 
   handleClick(param) {
-    this.setState({
-      'sel_col': param
-    })
+    this.setState({ 'sel_col': param })
+  }
+
+  handlePeriod(param) {
+    this.setState({'days': param })
   }
 
   render() {
-    let sel_data = this.state['sel_col'] === 'Vaccination' ? API_VACCINATION['vaccination'] : API_TIMESERIES['timeseries']
+    let sel_data = this.state['sel_col'] === 'Vaccination' ? API_VACCINATION['vaccination'].slice(-this.state['days']) : API_TIMESERIES['timeseries'].slice(-this.state['days'])
 
     return (
       <div className='container px-4 pb-2' id='featured-5'>
@@ -77,6 +79,14 @@ class App extends React.Component {
         </div>
 
         <div className='b-example-divider'></div>
+
+        <div className='d-flex flex-row-reverse'>
+          <div className='btn-group' role='group' aria-label='Basic outlined example'>
+            <button onClick={ () => this.handlePeriod(0) } type='button' className='btn btn-primary'>All</button>
+            <button onClick={ () => this.handlePeriod(90) } type='button' className='btn btn-outline-primary'>90 days</button>
+            <button onClick={ () => this.handlePeriod(30) } type='button' className='btn btn-outline-primary'>30 days</button>
+          </div>
+        </div>
 
         <div className='row g-5 mb-5 pb-5'>
           <LineChart data={ sel_data } type={ this.state['sel_col'] } size={ [1000, 800] } />
@@ -94,18 +104,18 @@ class App extends React.Component {
           <p>You can download this data from this <a href='https://github.com/open-vadodara/covid19/tree/main/src/data'>github repository</a>. This data gets updated every midnight. This data is meant to be open and free to be consumed in anyway possible. This project was built for the betterment of humanity.</p>
         </div>
 
-        <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <div className="col-md-4 d-flex align-items-center">
-            <a href="/" className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-              <svg className="bi" width="30" height="24">asd</svg>
+        <footer className='d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top'>
+          <div className='col-md-4 d-flex align-items-center'>
+            <a href='/' className='mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1'>
+              <svg className='bi' width='30' height='24'>asd</svg>
             </a>
-            <span className="text-muted">© 2021 Open Vadodara</span>
+            <span className='text-muted'>© 2021 Open Vadodara</span>
           </div>
 
-          <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li className="ms-3">
-              <a rel="noopener noreferrer" className="text-muted" target="_blank" href="https://github.com/open-vadodara">
-                <img src={github_logo} alt="Github Logo" style={{width: "2rem"}} />
+          <ul className='nav col-md-4 justify-content-end list-unstyled d-flex'>
+            <li className='ms-3'>
+              <a rel='noopener noreferrer' className='text-muted' target='_blank' href='https://github.com/open-vadodara'>
+                <img src={github_logo} alt='Github Logo' style={{width: '2rem'}} />
               </a>
             </li>
           </ul>
