@@ -32,26 +32,26 @@ export default function LineChart(props) {
 
   const getXAxis = (ref) => {
     const xAxis = d3.axisBottom(getX);
-    d3.select(ref).call(xAxis.tickFormat(d3.timeFormat("%b '%y")));
+    d3.select(ref).call(xAxis.tickFormat(d3.timeFormat("%b '%y"))).transition().duration(2000)
   };
 
   const getYAxis = (ref) => {
     const yAxis = d3.axisLeft(getY).tickSize(-width).tickPadding(15);
-    d3.select(ref).call(yAxis);
+    d3.select(ref).call(yAxis).transition().duration(2000)
   };
 
   const linePath = d3
     .line()
     .x((d) => getX(parseDate(d[date_col])))
     .y((d) => getY(d[sel_col]))
-    .curve(d3.curveMonotoneX)(data);
+    .curve(d3.curveMonotoneX)(data)
 
   const areaPath = d3
     .area()
     .x((d) => getX(parseDate(d[date_col])))
     .y0((d) => getY(d[sel_col]))
     .y1(() => getY(yMinValue - 1))
-    .curve(d3.curveMonotoneX)(data);
+    .curve(d3.curveMonotoneX)(data)
 
   const handleMouseMove = (e, i) => {
     let x0 = getX.invert(d3.pointer(e, this)[0])
