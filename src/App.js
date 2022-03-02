@@ -100,6 +100,7 @@ class App extends React.Component {
         </div>
 
         <div className='mx-5'>
+          <span className='last-updated'>Data last updated on: {API_VACCINATION['vaccination'][0]['updated_on']}</span>
           <p>Source: Case data being pulled from Gujarat state bulletin. Vaccination data from COWIN</p>
           <p>You can download this data from this <a href='https://github.com/open-vadodara/covid19/tree/main/src/data'>github repository</a>. This data gets updated every midnight. This data is meant to be open and free to be consumed in anyway possible. This project was built for the betterment of humanity.</p>
         </div>

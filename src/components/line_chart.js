@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import * as d3 from 'd3';
 import "../css/line_chart.css";
 
@@ -74,11 +74,11 @@ export default function LineChart(props) {
   };
 
   return (
-    <div>
+    <div id='line_chart_container'>
       <h2 className={'title ' + sel_class}>{ props.type }</h2>
       <div className='graph_info'>
-        <p className={ sel_class }>{ data[0][date_col] }</p>
-        <p className={ sel_class }>{ data[0][sel_col]  }</p>
+        <p className={ 'highlighted ' + sel_class }>{ data[0][date_col] }</p>
+        <p className={ 'highlighted ' + sel_class }>{ data[0][sel_col]  }</p>
       </div>
 
       <svg viewBox={`0 0 ${width} ${height}`} onMouseMove={handleMouseMove} >

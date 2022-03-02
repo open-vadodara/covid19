@@ -72,5 +72,7 @@ circle.recovered           { fill: var(--color-recovered); }
 circle.deceased            { fill: var(--color-deceased); }
 circle.vaccination         { fill: var(--color-vaccinated); }
 
+.last-updated { color: var(--color-neutral); }
+
 /* SVGs */
 svg { overflow: visible; }
