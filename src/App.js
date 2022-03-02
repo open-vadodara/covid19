@@ -82,9 +82,9 @@ class App extends React.Component {
 
         <div className='d-flex flex-row-reverse'>
           <div className='btn-group' role='group' aria-label='Basic outlined example'>
-            <button onClick={ () => this.handlePeriod(0) } type='button' className='btn btn-primary'>All</button>
-            <button onClick={ () => this.handlePeriod(90) } type='button' className='btn btn-outline-primary'>Last 90 days</button>
-            <button onClick={ () => this.handlePeriod(30) } type='button' className='btn btn-outline-primary'>Last 30 days</button>
+            <button onClick={ () => this.handlePeriod(0)  } type='button' className={ this.state.days === 0  ? 'btn btn-primary' : 'btn btn-outline-primary' } >All</button>
+            <button onClick={ () => this.handlePeriod(90) } type='button' className={ this.state.days === 90 ? 'btn btn-primary' : 'btn btn-outline-primary' }>Last 90 days</button>
+            <button onClick={ () => this.handlePeriod(30) } type='button' className={ this.state.days === 30 ? 'btn btn-primary' : 'btn btn-outline-primary' }>Last 30 days</button>
           </div>
         </div>
 

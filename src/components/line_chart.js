@@ -62,39 +62,41 @@ export default function LineChart(props) {
     let date_frmt = (sel_class === 'vaccinated') ? [date, month, year].join('-') : x0.toISOString().split('T')[0]
 
     let curr_val = data.filter((d) => d[date_col] === date_frmt)[0][sel_col]
-    d3.select('.graph_info text:nth-of-type(1)').text(x0.toDateString().substr(4))
-    d3.select('.graph_info text:nth-of-type(2)').text(
+    d3.select('.graph_info p:nth-of-type(1)').text(x0.toDateString().substr(4))
+    d3.select('.graph_info p:nth-of-type(2)').text(
       curr_val.toLocaleString('en-IN', {
         maximumFractionDigits: 2
       })
     )
-    d3.select('.graph_info circle')
+    d3.select('svg circle')
       .attr('cx', getX(parseDate(date_frmt)))
       .attr('cy', getY(curr_val) - 30)
   };
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} onMouseMove={handleMouseMove} >
-      <text className={'title ' + sel_class}>{ props.type }</text>
-      <g className='graph_info' transform='translate(0, 30)'>
-        <text className={ sel_class }>{ data[0][date_col] }</text>
-        <text className={ sel_class } transform='translate(0, 20)'>{ data[0][sel_col] }</text>
-        <circle r="5" className={ sel_class }></circle>
-      </g>
+    <div>
+      <h2 className={'title ' + sel_class}>{ props.type }</h2>
+      <div className='graph_info'>
+        <p className={ sel_class }>{ data[0][date_col] }</p>
+        <p className={ sel_class }>{ data[0][sel_col]  }</p>
+      </div>
 
-      <g className="axis yAxis" ref={getYAxis} />
-      <g className="axis xAxis" ref={getXAxis} transform={`translate(0, ${height})`} />
+      <svg viewBox={`0 0 ${width} ${height}`} onMouseMove={handleMouseMove} >
+        <circle r="5" className={ sel_class } transform='translate(0, 30)'></circle>
+        <g className="axis yAxis" ref={getYAxis} />
+        <g className="axis xAxis" ref={getXAxis} transform={`translate(0, ${height})`} />
 
-      <path className={ sel_class } d={ areaPath } opacity={0.3} onMouseMove={handleMouseMove} />
-      <path className={"pathstroke " + sel_class} d={linePath} />
+        <path className={ sel_class } d={ areaPath } opacity={0.3} onMouseMove={handleMouseMove} />
+        <path className={"pathstroke " + sel_class} d={linePath} />
 
-      {data.map((item, index) => {
-        return (
-          <g key={index}>
-            <text className={ sel_class } x={getX(item[date_col])} y={getY(item[sel_col]) - 20} textAnchor="middle"></text>
-          </g>
-        );
-      })}
-    </svg>
+        {data.map((item, index) => {
+          return (
+            <g key={index}>
+              <text className={ sel_class } x={getX(item[date_col])} y={getY(item[sel_col]) - 20} textAnchor="middle"></text>
+            </g>
+          );
+        })}
+      </svg>
+    </div>
   );
 }

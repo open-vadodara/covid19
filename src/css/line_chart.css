@@ -1,11 +1,11 @@
 @import "style.css";
 
 
-path.active, text.active          { fill: var(--color-active); color: var(--color-active); }
-path.recovered, text.recovered    { fill: var(--color-recovered); color: var(--color-recovered); }
-path.vaccinated, text.vaccinated  { fill: var(--color-vaccinated); color: var(--color-vaccinated); }
-path.confirmed, text.confirmed    { fill: var(--color-confirmed); color: var(--color-confirmed); }
-path.deceased, text.deceased      { fill: var(--color-deceased); color: var(--color-deceased); }
+path.active, h2.active, p.active          { fill: var(--color-active); color: var(--color-active); }
+path.recovered, h2.recovered, p.recovered    { fill: var(--color-recovered); color: var(--color-recovered); }
+path.vaccinated, h2.vaccinated, p.vaccinated  { fill: var(--color-vaccinated); color: var(--color-vaccinated); }
+path.confirmed, h2.confirmed, p.confirmed    { fill: var(--color-confirmed); color: var(--color-confirmed); }
+path.deceased, h2.deceased, p.deceased      { fill: var(--color-deceased); color: var(--color-deceased); }
 
 path.active     { stroke: var(--color-active); }
 path.recovered  { stroke: var(--color-recovered); }
@@ -15,7 +15,7 @@ path.deceased   { stroke: var(--color-deceased); }
 
 path.pathstroke { fill: none; stroke-width: 2; }
 
-text.title { font-size: 2rem; }
+h2.title { font-size: 2rem; }
 
 .subtitle text {
   text-decoration: underline;
